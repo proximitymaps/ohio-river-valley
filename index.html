@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Emissions by State</title>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="Website meta description for google search results go here"
+    />
+    <meta name="dc.relation" content="https://newmapsplus.github.io/" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link rel="stylesheet" href="vendor/css/main.min.css" media="screen" />
+
+    <!-- Add lesson styles to following stylesheet -->
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark bg-dark" id="nav">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="https://newmapsplus.as.uky.edu/">
+          Proximity Maps
+        </a>
+      </div>
+    </nav>
+
+    <section class="container-fluid nmp-lite-bg" id="fullHeight">
+      <div class="row">
+        <div class="col-md-9 py-2">
+          <div id="column-map" class="bg-light rounded-1" tabindex="0">
+            <div id="map" class="position-relative rounded-1">
+              <div id="by-state">
+                <h2 id="type">Total emissions by state</h2>
+                <div id="state-legend"></div>
+              </div>
+              <div id="ui" class="dropdown">
+                <a
+                  class="btn btn-secondary dropdown-toggle"
+                  href="#"
+                  role="button"
+                  id="dropdownMenuLink"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Explore individual facilities
+                </a>
+                <div
+                  class="dropdown-menu"
+                  aria-labelledby="dropdownMenuLink"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="overflow-scroll col-md-3 py-2" id="two-column">
+          <h2 class="h2 text-dark">Total emissions by type</h2>
+          <p>Select a facility type to see the total emissions by state.</p>
+          <div id="bar-chart"></div>
+          <p>Use dropdown on top-right of map to view individual energy sources. User can click on map elements for more information.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer fixed-bottom bg-dark" id="footer">
+      <div class="row footer-text">
+        <div class="col-12 col-md text-md-left nav-link text-white">
+          <ul class="list-unstyled">
+            <li>Map authored by @proximitymaps</li>
+            <li>
+              Data sourced from
+              <a
+                href="https://www.census.gov/geo/maps-data/data/tiger-cart-boundary.html"
+                >Cartographic Boundary Files</a
+              >
+              and the
+              <a
+                href="https://www.epa.gov/air-emissions-inventories/emissions-inventory-system-eis-gateway"
+                >EPA Air Emissions Inventories</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <script src="vendor/js/bundle.min.js" defer></script>
+      <script src="https://d3js.org/d3.v7.js"></script>
+      <script src="https://unpkg.com/topojson@3"></script>
+      <script src="js/utilities.js"></script>
+      <!-- add lesson code to following script -->
+      <script src="js/app.js"></script>
+    </footer>
+  </body>
+</html>
