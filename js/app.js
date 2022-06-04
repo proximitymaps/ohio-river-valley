@@ -469,6 +469,100 @@
 
     }
 
+    function stateLegend(scale, type) {
+
+        // remove any existing legend
+        d3.select(`#state-legend svg`).remove();
+
+        // find the min and max values in scale
+        const range = scale[type].domain();
+
+        // console.log(range);
+
+        // select the state legend container and create a new svg
+        const svg = d3
+            .select("#state-legend")
+            .append("svg")
+            .attr("width", 240)
+            .attr("height", 70)
+            .append("g")
+            .attr("transform", `translate(5,5)`);
+
+        // d3 can create an image of a linear scale
+        svg
+            .append("image")
+            .attr("x", 0)
+            .attr("y", 15)
+            .attr("width", 180)
+            .attr("height", 20)
+            .attr("preserveAspectRatio", "none")
+            .attr("xlink:href", ramp(scale[type]).toDataURL());
+
+        // add a title
+        svg
+            .append("text")
+            .attr("transform", `translate(0,5)`)
+            .attr("x", 0)
+            .attr("y", 5)
+            .attr("text-anchor", "left")
+            .style("font-size", "1.2em")
+            .text("Million metric tons");
+
+        // add a tick line for the min value
+        svg
+            .append("line")
+            .attr("transform", `translate(0,15)`)
+            .style("stroke", "black")
+            .style("stroke-width", 0.5)
+            .attr("x1", 0) // x position of the first end of the line
+            .attr("y1", 0) // y position of the first end of the line
+            .attr("x2", 0) // x position of the second end of the line
+            .attr("y2", 25); // y position of the second end of the line
+
+        // add a tick line for the max value
+        svg
+            .append("line")
+            .attr("transform", `translate(0,15)`)
+            .style("stroke", "black")
+            .style("stroke-width", 0.5)
+            .attr("x1", 180)
+            .attr("y1", 0)
+            .attr("x2", 180)
+            .attr("y2", 25);
+
+        // add a tick label for the min value
+        svg
+            .append("text")
+            .attr("transform", `translate(0,15)`)
+            .attr("x", 0)
+            .attr("y", 40)
+            .attr("text-anchor", "left")
+            .text((range[0] / 1e6).toFixed(1))
+
+        // add a tick label for the max value
+        svg
+            .append("text")
+            .attr("transform", `translate(0,15)`)
+            .attr("x", 200)
+            .attr("y", 40)
+            .attr("text-anchor", "middle")
+            .text((range[1] / 1e6).toFixed(1))
+    }
+
+    //  create a linear gradient canvas element
+    function ramp(color, n = 256) {
+        const canvas = document.createElement("canvas");
+        canvas.width = n;
+        canvas.height = 1;
+        const context = canvas.getContext("2d");
+        const range = color.domain();
+        for (let i = 0; i < n; ++i) {
+            context.fillStyle = color((i / (n - 1)) * (range[1] - range[0]) + range[0]);
+            context.fillRect(i, 0, 1, 1);
+        }
+        return canvas;
+    } // end stateLegend
+
     function makeZoom(svg, width, height, radius) {
         const zoom = d3
             .zoom()
