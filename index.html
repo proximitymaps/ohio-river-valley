@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="vendor/css/main.min.css" media="screen" />
 
     <!-- Add lesson styles to following stylesheet -->
-    <link rel="stylesheet" href="css/styles.css" />
+    <!-- <link rel="stylesheet" href="css/styles.css" /> -->
 </head>
 
 <body>
     <nav class="navbar navbar-dark bg-dark" id="nav">
+        <!-- from template 1 -->
         <div class="container-fluid">
             <a class="navbar-brand" href="https://newmapsplus.as.uky.edu/">
                 Proximity Maps
@@ -23,7 +24,43 @@
         </div>
     </nav>
 
+    <section class="container-fluid nmp-lite-bg" id="fullHeight">
+        <div class="row">
+            <div class="col-md-10 py-2">
+                <div id="column-map" class="bg-light rounded-1" tabindex="0">
+                    <div id="map" class="position-relative rounded-1">
+                        <div id="by-state">
+                            <h2 id="type">Total emissions by state</h2>
+                            <div id="state-legend"></div>
+                        </div>
+                        <div id="ui" class="dropdown"></div>
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore individual
+                            facilities
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <!-- from template 1 -->
+                        </div>
+                        <div id="ui-controls"> 
+                            <!-- from template 3 -->
+                            <label>
+                                <span class="min">L.1</span>
+                                <input type="range" min="1" , max="6" , value="1" , step="1" , class="level-slider"></input>
+                                <span class="max">L.6</span>
+                              </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="overflow-scroll col-md-2 py-2" id="two-column">
+                <h2 class="h2 text-dark">Total emissions by type</h2>
+                <p>Select a facility type to see the total emissions by state.</p>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer fixed-bottom bg-dark" id="footer">
+        <!-- from template 1 -->
         <div class="row footer-text">
             <div class="col-12 col-md text-md-left nav-link text-white">
                 <ul class="list-unstyled">
