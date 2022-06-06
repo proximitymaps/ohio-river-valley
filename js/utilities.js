@@ -19,7 +19,7 @@ function adjustHeight() {
     }
 
     if (document.querySelector("#two-column")) {
-        console.log(window.innerWidth)
+        // console.log(window.innerWidth)
         let size = window.innerHeight - height
         let containerSize = document.querySelector("#two-column")
         let mapSize = document.querySelector("#column-map")

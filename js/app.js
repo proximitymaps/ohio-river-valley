@@ -12,7 +12,7 @@
        .attr('width', width) // provide width and height attributes
        .attr('height', height)
  
-     console.log(svg);
+   //   console.log(svg);
  
      // request our data files and reference with variables
      const stateGeoJson = d3.json('data/us-states.geojson')
@@ -30,17 +30,34 @@
      // accepts the data as a parameter countiesData
      function drawMap(data) {
        // log data to console
-       console.log(data);
+      //  console.log(data);
  
        // refer to different datasets
-    //    const stateData = data[0];
-    //    const countiesData = data[1];
+       const stateData = data[0];
+       const waterData = data[1];
+       const runoff = data[2];
+       const orvOne = data[3];
+       const orvTwo = data[4];
+       const orvThree = data[5];
+       const orvFour = data[6];
+       const orv = data[7];  
+
+       console.log(waterData);
  
-       // convert the TopoJSON into GeoJSON
-    //    const countiesGeoJson = topojson.feature(countiesData, {
-    //      type: 'GeometryCollection',
-    //      geometries: countiesData.objects.counties.geometries
-    //    });
+      //  convert the TopoJSON into GeoJSON
+       const orvFourGeoJson = topojson.feature(orvFour, {
+         type: 'GeometryCollection',
+         geometries: orvFour.objects.orv_4.geometries
+       });
+
+       const waterDataGeoJson = topojson.feature(waterData, {
+         type: 'GeometryCollection',
+         geometries: waterData.objects.rivers-lakes-polygon.geometries
+       });
+
+
+
+      //  console.log(orvFourGeoJson);
  
        // declare a geographic path generator
        // // fit the extent to the width and height using the geojson
