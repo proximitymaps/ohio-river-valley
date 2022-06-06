@@ -50,12 +50,10 @@
          geometries: orvFour.objects.orv_4.geometries
        });
 
-       const waterDataGeoJson = topojson.feature(waterData, {
-         type: 'GeometryCollection',
-         geometries: waterData.objects.rivers-lakes-polygon.geometries
-       });
-
-
+      //  const waterDataGeoJson = topojson.feature(waterData, {
+      //    type: 'GeometryCollection',
+      //    geometries: waterData.objects.rivers-lakes-polygon.geometries
+      //  });
 
       //  console.log(orvFourGeoJson);
  
