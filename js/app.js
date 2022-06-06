@@ -42,7 +42,7 @@
        const orvFour = data[6];
        const orv = data[7];  
 
-       console.log(waterData);
+      //  console.log(waterData);
  
       //  convert the TopoJSON into GeoJSON
        const orvFourGeoJson = topojson.feature(orvFour, {
@@ -58,18 +58,18 @@
       //  console.log(orvFourGeoJson);
  
        // declare a geographic path generator
-       // // fit the extent to the width and height using the geojson
-       // const projection = d3.geoConicEquidistant()
-       //   // .fitSize([width, height], countiesGeoJson);
-       //   .center([0, 40]) // center of geography in latitude
-       //   .rotate([97, 0]) // rotate the earth negative degrees in longitude
-       //   .scale(950) // adjust the scale (i.e., "zoom")
-       //   .translate([width / 2, height / 2]); // move the project to the center of the SVG
+       // fit the extent to the width and height using the geojson
+       const projection = d3.geoConicEquidistant()
+         .fitSize([width, height], orv)
+         .center([0, 40]) // center of geography in latitude
+         .rotate([97, 0]) // rotate the earth negative degrees in longitude
+         .scale(950) // adjust the scale (i.e., "zoom")
+         .translate([width / 2, height / 2]); // move the project to the center of the SVG
  
-    //    var projection = d3.geoAlbersUsa()
-    //      .fitSize([width, height], countiesGeoJson)
+      //  var projection = d3.geoAlbersUsa()
+      //    .fitSize([width, height], countiesGeoJson)
  
-       // console.log(projection);
+       console.log(projection);
  
        // declare a path generator using the projection
     //    const path = d3.geoPath()
