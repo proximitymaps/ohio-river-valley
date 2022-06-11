@@ -45,10 +45,10 @@
       //  console.log(waterData);
 
       //  convert the TopoJSON into GeoJSON
-      const orvFourGeoJson = topojson.feature(orvFour, {
-         type: 'GeometryCollection',
-         geometries: orvFour.objects.orv_4.geometries
-      });
+      // const orvFourGeoJson = topojson.feature(orvFour, {
+      //    type: 'GeometryCollection',
+      //    geometries: orvFour.objects.orv_4.geometries
+      // });
 
       //  const waterDataGeoJson = topojson.feature(waterData, {
       //    type: 'GeometryCollection',
@@ -136,6 +136,9 @@
    function drawStates(stateData, waterData, runoff, orvOne, orvTwo, orvThree, orvFour, orv) {
 
       console.log(stateData);
+      const boundaries = [orvOne, orvTwo, orvThree, orvFour, orv]
+
+      console.log(boundaries);
 
       // // create empty variables to hold color scales and ranges
       // const colorScales = {}
