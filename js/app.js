@@ -135,33 +135,35 @@
 
    function drawStates(stateData, waterData, runoff, orvOne, orvTwo, orvThree, orvFour, orv) {
 
+      console.log(stateData);
+
       // // create empty variables to hold color scales and ranges
-      const colorScales = {}
-      let range = []
-      const fullRange = []
+      // const colorScales = {}
+      // let range = []
+      // const fullRange = []
 
       // lopo over each industry type
-      byTypeSort.forEach(d => {
-         // reset the range array
-         range = []
-         // loop over each state
-         runoff.features.forEach(g => {
-            // if the state has emissions data for this industry type
-            if (g.properties.emissions[d[0]]) {
-               // add the emissions quantity by type to the range array
-               range.push(+g.properties.emissions[d[0]])
-               // add all emissions by state to the full range array
-               fullRange.push(+g.properties.emissions.all)
-            } else {
-               range.push(0)
-            }
-         })
+      // byTypeSort.forEach(d => {
+      //    // reset the range array
+      //    range = []
+      //    // loop over each state
+      //    runoff.features.forEach(g => {
+      //       // if the state has emissions data for this industry type
+      //       if (g.properties.emissions[d[0]]) {
+      //          // add the emissions quantity by type to the range array
+      //          range.push(+g.properties.emissions[d[0]])
+      //          // add all emissions by state to the full range array
+      //          fullRange.push(+g.properties.emissions.all)
+      //       } else {
+      //          range.push(0)
+      //       }
+      //    })
 
          // create a continuous color scale for this industry type
-         colorScales[d[0]] = d3.scaleLinear()
-            .domain(d3.extent(range))
-            .range(["white", color(d[0])]);
-      })
+      //    colorScales[d[0]] = d3.scaleLinear()
+      //       .domain(d3.extent(range))
+      //       .range(["white", color(d[0])]);
+      // })
 
       // console.log(colorScales);
 
@@ -173,39 +175,37 @@
       // // console.log(colorScales.all);
 
       // // select the html element that will hold our map
-      // const mapContainer = d3.select('#map')
+      const mapContainer = d3.select('#map')
 
-      // console.log(mapContainer);
+      console.log(mapContainer);
 
-      // // determine width and height of map from container
-      // const width = mapContainer.node().offsetWidth - 60;
-      // const height = mapContainer.node().offsetHeight - 60;
+      // determine width and height of map from container
+      const width = mapContainer.node().offsetWidth - 60;
+      const height = mapContainer.node().offsetHeight - 60;
 
-      // const svg = mapContainer
-      //    .append('svg')
-      //    .attr('width', width)
-      //    .attr('height', height)
-      //    .classed('position-absolute', true) // add bootstrap class
-      //    .style('top', '40px')
-      //    .style('left', '30px');
+      const svg = mapContainer
+         .append('svg')
+         .attr('width', width)
+         .attr('height', height)
+         .classed('position-absolute', true) // add bootstrap class
+         .style('top', '60px')
+         .style('left', '60px');
 
-      // // use geojson layer to fit extent of the projection
-      // const projection = d3.geoAlbersUsa()
-      //    .fitSize([width, height], geojson);
+      // use geojson layer to fit extent of the projection
+      const projection = d3.geoAlbersUsa()
+         .fitSize([width, height], orv);
 
-      // const path = d3.geoPath()
-      //    .projection(projection);
+      const path = d3.geoPath()
+         .projection(projection);
 
       // // draw state data onto d3 svg map element
-      // const states = svg.append('g')
-      //    .selectAll('path')
-      //    .data(geojson.features)
-      //    .join('path')
-      //    .attr('d', path)
-      //    .style('fill', d => {
-      //       return colorScales.all(d.properties.emissions.all)
-      //    })
-      //    .style('stroke', 'black')
+      const states = svg.append('g')
+         .selectAll('path')
+         .data(orv.features)
+         .join('path')
+         .attr('d', path)
+         .style('fill') // d => {return colorScales.all(d.properties.emissions.all)}
+         .style('stroke', 'black')
 
       // // add a tooltip to each state
       // states.on('click', (event, d) => {
