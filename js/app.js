@@ -30,7 +30,7 @@
    // accepts the data as a parameter countiesData
    function drawMap(data) {
       // log data to console
-      //  console.log(data);
+       console.log(data);
 
       // refer to different datasets
       const stateData = data[0];
@@ -140,30 +140,30 @@
       let range = []
       const fullRange = []
 
-      // // lopo over each industry type
-      // byTypeSort.forEach(d => {
-      //    // reset the range array
-      //    range = []
-      //    // loop over each state
-      //    geojson.features.forEach(g => {
-      //       // if the state has emissions data for this industry type
-      //       if (g.properties.emissions[d[0]]) {
-      //          // add the emissions quantity by type to the range array
-      //          range.push(+g.properties.emissions[d[0]])
-      //          // add all emissions by state to the full range array
-      //          fullRange.push(+g.properties.emissions.all)
-      //       } else {
-      //          range.push(0)
-      //       }
-      //    })
+      // lopo over each industry type
+      byTypeSort.forEach(d => {
+         // reset the range array
+         range = []
+         // loop over each state
+         runoff.features.forEach(g => {
+            // if the state has emissions data for this industry type
+            if (g.properties.emissions[d[0]]) {
+               // add the emissions quantity by type to the range array
+               range.push(+g.properties.emissions[d[0]])
+               // add all emissions by state to the full range array
+               fullRange.push(+g.properties.emissions.all)
+            } else {
+               range.push(0)
+            }
+         })
 
-      //    // create a continuous color scale for this industry type
-      //    colorScales[d[0]] = d3.scaleLinear()
-      //       .domain(d3.extent(range))
-      //       .range(["white", color(d[0])]);
-      // })
+         // create a continuous color scale for this industry type
+         colorScales[d[0]] = d3.scaleLinear()
+            .domain(d3.extent(range))
+            .range(["white", color(d[0])]);
+      })
 
-      // // console.log(colorScales);
+      // console.log(colorScales);
 
       // // create a continuous color scale for all emissions by state
       // colorScales.all = d3.scaleLinear()
