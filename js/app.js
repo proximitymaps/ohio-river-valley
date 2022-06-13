@@ -45,10 +45,10 @@
       //  console.log(waterData);
 
       //  convert the TopoJSON into GeoJSON
-      const orvFourGeoJson = topojson.feature(orvFour, {
-         type: 'GeometryCollection',
-         geometries: orvFour.objects.orv_4.geometries
-      });
+      // const orvFourGeoJson = topojson.feature(orvFour, {
+      //    type: 'GeometryCollection',
+      //    geometries: orvFour.objects.orv_4.geometries
+      // });
 
       //  const waterDataGeoJson = topojson.feature(waterData, {
       //    type: 'GeometryCollection',
@@ -133,10 +133,10 @@
 
    } // end processData
 
-   function drawStates(stateData, waterData, runoff, orvOne, orvTwo, orvThree, orvFourGeoJson, orv) {
+   function drawStates(stateData, waterData, runoff, orvOne, orvTwo, orvThree, orvFour, orv) {
 
       console.log(stateData);
-      const boundaries = [orvOne, orvTwo, orvThree, orvFourGeoJson, orv]
+      const boundaries = [orvOne, orvTwo, orvThree, orvFour, orv]
 
       console.log(boundaries);
 
@@ -202,42 +202,9 @@
          .projection(projection);
 
       // // draw state data onto d3 svg map element
-      // const boundaryA = svg.append('g')
-      //    .selectAll('path')
-      //    .data(orv.features)
-      //    .join('path')
-      //    .attr('d', path)
-      //    .style('fill') // d => {return colorScales.all(d.properties.emissions.all)}
-      //    .style('stroke', 'black')
-
-         // const boundaryB = svg.append('g')
-         // .selectAll('path')
-         // .data(orvOne.features)
-         // .join('path')
-         // .attr('d', path)
-         // .style('fill') // d => {return colorScales.all(d.properties.emissions.all)}
-         // .style('stroke', 'black')
-
-         // const boundaryC = svg.append('g')
-         // .selectAll('path')
-         // .data(orvTwo.features)
-         // .join('path')
-         // .attr('d', path)
-         // .style('fill') // d => {return colorScales.all(d.properties.emissions.all)}
-         // .style('stroke', 'black')
-
-         // const boundaryD = svg.append('g')
-         // .selectAll('path')
-         // .data(orvThree.features)
-         // .join('path')
-         // .attr('d', path)
-         // .style('fill') // d => {return colorScales.all(d.properties.emissions.all)}
-         // .style('stroke', 'black')
-
-         
-         const boundaryE = svg.append('g')
+      const states = svg.append('g')
          .selectAll('path')
-         .data(orvFour.arcs)
+         .data(orv.features)
          .join('path')
          .attr('d', path)
          .style('fill') // d => {return colorScales.all(d.properties.emissions.all)}
