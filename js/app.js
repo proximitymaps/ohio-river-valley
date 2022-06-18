@@ -15,8 +15,8 @@
    //   console.log(svg);
 
    // request our data files and reference with variables
-   const stateJson = d3.json('data/us-states.json')
-   const riversLakes = d3.json('data/rivers-lakes-polygon.json')
+   const stateJson = d3.json('data/states.json')
+   const water = d3.json('data/water.json')
    const usRunoff = d3.json('data/us_runoff.json')
    const orvOne = d3.json('data/orv_1.json')
    const orvTwo = d3.json('data/orv_2.json')
@@ -25,7 +25,7 @@
    const orv = d3.json('data/orv.json')
 
    // wait until data is loaded then send to draw map function
-   Promise.all([stateJson, riversLakes, usRunoff, orvOne, orvTwo, orvThree, orvFour, orv]).then(drawMap);
+   Promise.all([stateJson, water, usRunoff, orvOne, orvTwo, orvThree, orvFour, orv]).then(drawMap);
 
    // accepts the data as a parameter countiesData
    function drawMap(data) {
@@ -45,17 +45,67 @@
       //  console.log(waterData);
 
       //  convert the TopoJSON into GeoJSON
-      const orvFourGeoJson = topojson.feature(orvFour, {
+      const stateDataGeoJson = topojson.feature(stateData, {
          type: 'GeometryCollection',
-         geometries: orvFour.objects.orv_4.geometries
+         geometries: stateData.objects.states.geometries
       });
 
-      //  const waterDataGeoJson = topojson.feature(waterData, {
-      //    type: 'GeometryCollection',
-      //    geometries: waterData.objects.rivers-lakes-polygon.geometries
-      //  });
+      console.log(stateDataGeoJson);
+
+      //  convert the TopoJSON into GeoJSON
+      const waterGeoJson = topojson.feature(waterData, {
+         type: 'GeometryCollection',
+         geometries: waterData.objects.water.geometries
+      });
+
+      console.log(waterGeoJson);
+
+      //  convert the TopoJSON into GeoJSON
+      const runoffGeoJson = topojson.feature(runoff, {
+         type: 'GeometryCollection',
+         geometries: runoff.objects.us_runoff.geometries
+      });
+
+      console.log(runoffGeoJson);
+
+      //  convert the TopoJSON into GeoJSON
+      const orvOneGeoJson = topojson.feature(orvOne, {
+         type: 'GeometryCollection',
+         geometries: orvOne.objects.orv_1.geometries
+      });
+
+      console.log(orvOneGeoJson);
+
+      //  convert the TopoJSON into GeoJSON
+      const orvTwoGeoJson = topojson.feature(orvTwo, {
+         type: 'GeometryCollection',
+         geometries: orvTwo.objects.orv_2.geometries
+      });
+
+      console.log(orvTwoGeoJson);
+
+      //  convert the TopoJSON into GeoJSON
+      const orvThreeGeoJson = topojson.feature(orvThree, {
+         type: 'GeometryCollection',
+         geometries: orvThree.objects.orv_3.geometries
+      });
+
+      console.log(orvThreeGeoJson);
+
+      //  convert the TopoJSON into GeoJSON
+      const orvFourGeoJson = topojson.feature(orvFour, {
+         type: 'GeometryCollection',
+         geometries: orv.objects.orv.geometries
+      });
 
        console.log(orvFourGeoJson);
+
+      //  convert the TopoJSON into GeoJSON
+      // const orvGeoJson = topojson.feature(orv, {
+      //    type: 'GeometryCollection',
+      //    geometries: orvFour.objects.orv_4.geometries
+      // });
+
 
       // declare a geographic path generator
       // fit the extent to the width and height using the geojson
