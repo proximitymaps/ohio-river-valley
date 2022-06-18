@@ -227,38 +227,47 @@
 
       // // console.log(colorScales.all);
 
-      // // // select the html element that will hold our map
-      // const mapContainer = d3.select('#map')
+      // select the html element that will hold our map
+      const mapContainer = d3.select('#map')
 
       // console.log(mapContainer);
 
-      // // determine width and height of map from container
-      // const width = mapContainer.node().offsetWidth - 60;
-      // const height = mapContainer.node().offsetHeight - 60;
+      // determine width and height of map from container
+      const width = mapContainer.node().offsetWidth;
+      const height = mapContainer.node().offsetHeight;
 
-      // const svg = mapContainer
-      //    .append('svg')
-      //    .attr('width', width)
-      //    .attr('height', height)
-      //    .classed('position-absolute', true) // add bootstrap class
-      //    .style('top', '60px')
-      //    .style('left', '60px');
+      const svg = mapContainer
+         .append('svg')
+         .attr('width', width)
+         .attr('height', height)
+         .classed('position-absolute', true) // add bootstrap class
+         .style('top', '0px')
+         .style('left', '0px')
+         .style('bottom', '0px');
 
-      // // use geojson layer to fit extent of the projection
-      // const projection = d3.geoAlbersUsa()
-      //    .fitSize([width, height], orv);
+      // use geojson layer to fit extent of the projection
+      const projection = d3.geoAlbersUsa()
+         .fitSize([width, height], orvGJson);
 
-      // const path = d3.geoPath()
-      //    .projection(projection);
+      const path = d3.geoPath()
+         .projection(projection);
 
-      // // // draw state data onto d3 svg map element
-      // const states = svg.append('g')
-      //    .selectAll('path')
-      //    .data(orv.features)
-      //    .join('path')
-      //    .attr('d', path)
-      //    .style('fill') // d => {return colorScales.all(d.properties.emissions.all)}
-      //    .style('stroke', 'black')
+      // const water = svg.append('g')
+      // .selectAll('path')
+      // .data(waterGJson.features)
+      // .join('path')
+      // .attr('d', path)
+      // .style('fill') // d => {return colorScales.all(d.properties.emissions.all)}
+      // .style('stroke', 'blue')
+
+      // draw state data onto d3 svg map element
+      const states = svg.append('g')
+         .selectAll('path')
+         .data(stateDataGJson.features)
+         .join('path')
+         .attr('d', path)
+         .style('fill') // d => {return colorScales.all(d.properties.emissions.all)}
+         .style('stroke', 'black')
 
       // // add a tooltip to each state
       // states.on('click', (event, d) => {
