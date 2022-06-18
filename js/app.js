@@ -358,12 +358,17 @@
       // ramp(color, n = 256);
       // drawPoints(geojson, facilityData, byTypeSort, svg);
       // drawPoints(geojson, facilityData, byTypeSort, svg); // not defined yet
+      drawRunoff(boundaries);
    } // end drawStates
 
    // Set heights for page sections
    //  adjustHeight();
 
    // D3 time
+
+   function drawRunoff(boundaries) {
+      console.log(boundaries);
+   }
 
 
 
