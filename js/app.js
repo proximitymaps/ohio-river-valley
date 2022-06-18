@@ -15,14 +15,14 @@
    //   console.log(svg);
 
    // request our data files and reference with variables
-   const stateGeoJson = d3.json('data/us-states.geojson')
+   const stateGeoJson = d3.json('data/us-states.json')
    const riversLakes = d3.json('data/rivers-lakes-polygon.json')
-   const usRunoff = d3.json('data/us_runoff.geojson')
-   const orvOne = d3.json('data/orv_1.geojson')
-   const orvTwo = d3.json('data/orv_2.geojson')
-   const orvThree = d3.json('data/orv_3.geojson')
+   const usRunoff = d3.json('data/us_runoff.json')
+   const orvOne = d3.json('data/orv_1.json')
+   const orvTwo = d3.json('data/orv_2.json')
+   const orvThree = d3.json('data/orv_3.json')
    const orvFour = d3.json('data/orv_4.json')
-   const orv = d3.json('data/orv.geojson')
+   const orv = d3.json('data/orv.json')
 
    // wait until data is loaded then send to draw map function
    Promise.all([stateGeoJson, riversLakes, usRunoff, orvOne, orvTwo, orvThree, orvFour, orv]).then(drawMap);
