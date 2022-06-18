@@ -15,7 +15,7 @@
    //   console.log(svg);
 
    // request our data files and reference with variables
-   const stateGeoJson = d3.json('data/us-states.json')
+   const stateJson = d3.json('data/us-states.json')
    const riversLakes = d3.json('data/rivers-lakes-polygon.json')
    const usRunoff = d3.json('data/us_runoff.json')
    const orvOne = d3.json('data/orv_1.json')
@@ -25,7 +25,7 @@
    const orv = d3.json('data/orv.json')
 
    // wait until data is loaded then send to draw map function
-   Promise.all([stateGeoJson, riversLakes, usRunoff, orvOne, orvTwo, orvThree, orvFour, orv]).then(drawMap);
+   Promise.all([stateJson, riversLakes, usRunoff, orvOne, orvTwo, orvThree, orvFour, orv]).then(drawMap);
 
    // accepts the data as a parameter countiesData
    function drawMap(data) {
@@ -45,17 +45,17 @@
       //  console.log(waterData);
 
       //  convert the TopoJSON into GeoJSON
-      // const orvFourGeoJson = topojson.feature(orvFour, {
-      //    type: 'GeometryCollection',
-      //    geometries: orvFour.objects.orv_4.geometries
-      // });
+      const orvFourGeoJson = topojson.feature(orvFour, {
+         type: 'GeometryCollection',
+         geometries: orvFour.objects.orv_4.geometries
+      });
 
       //  const waterDataGeoJson = topojson.feature(waterData, {
       //    type: 'GeometryCollection',
       //    geometries: waterData.objects.rivers-lakes-polygon.geometries
       //  });
 
-      //  console.log(orvFourGeoJson);
+       console.log(orvFourGeoJson);
 
       // declare a geographic path generator
       // fit the extent to the width and height using the geojson
@@ -177,38 +177,38 @@
 
       // // console.log(colorScales.all);
 
-      // // select the html element that will hold our map
-      const mapContainer = d3.select('#map')
+      // // // select the html element that will hold our map
+      // const mapContainer = d3.select('#map')
 
-      console.log(mapContainer);
+      // console.log(mapContainer);
 
-      // determine width and height of map from container
-      const width = mapContainer.node().offsetWidth - 60;
-      const height = mapContainer.node().offsetHeight - 60;
+      // // determine width and height of map from container
+      // const width = mapContainer.node().offsetWidth - 60;
+      // const height = mapContainer.node().offsetHeight - 60;
 
-      const svg = mapContainer
-         .append('svg')
-         .attr('width', width)
-         .attr('height', height)
-         .classed('position-absolute', true) // add bootstrap class
-         .style('top', '60px')
-         .style('left', '60px');
+      // const svg = mapContainer
+      //    .append('svg')
+      //    .attr('width', width)
+      //    .attr('height', height)
+      //    .classed('position-absolute', true) // add bootstrap class
+      //    .style('top', '60px')
+      //    .style('left', '60px');
 
-      // use geojson layer to fit extent of the projection
-      const projection = d3.geoAlbersUsa()
-         .fitSize([width, height], orv);
+      // // use geojson layer to fit extent of the projection
+      // const projection = d3.geoAlbersUsa()
+      //    .fitSize([width, height], orv);
 
-      const path = d3.geoPath()
-         .projection(projection);
+      // const path = d3.geoPath()
+      //    .projection(projection);
 
-      // // draw state data onto d3 svg map element
-      const states = svg.append('g')
-         .selectAll('path')
-         .data(orv.features)
-         .join('path')
-         .attr('d', path)
-         .style('fill') // d => {return colorScales.all(d.properties.emissions.all)}
-         .style('stroke', 'black')
+      // // // draw state data onto d3 svg map element
+      // const states = svg.append('g')
+      //    .selectAll('path')
+      //    .data(orv.features)
+      //    .join('path')
+      //    .attr('d', path)
+      //    .style('fill') // d => {return colorScales.all(d.properties.emissions.all)}
+      //    .style('stroke', 'black')
 
       // // add a tooltip to each state
       // states.on('click', (event, d) => {
