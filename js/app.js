@@ -267,7 +267,6 @@
          .join('path')
          .attr('d', path)
          .style('fill') // d => {return colorScales.all(d.properties.emissions.all)}
-         .style('stroke', 'black')
 
       // // add a tooltip to each state
       // states.on('click', (event, d) => {
