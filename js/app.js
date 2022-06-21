@@ -30,7 +30,7 @@
    // accepts the data as a parameter countiesData
    function drawMap(data) {
       // log data to console
-       console.log(data);
+      console.log(data);
 
       // refer to different datasets
       const stateData = data[0];
@@ -101,14 +101,14 @@
       //  console.log(orvFourGeoJson);
 
       const orvGJson = topojson.feature(orv, {
-            type: 'GeometryCollection',
-            geometries: orv.objects.orv.geometries
-         });
+         type: 'GeometryCollection',
+         geometries: orv.objects.orv.geometries
+      });
 
       console.log(orvGJson);
 
       drawStates(stateDataGJson, waterGJson, runoffGJson, orvOneGJson, orvTwoGJson, orvThreeGJson, orvFourGJson, orvGJson);
-      
+
    } // end processData
 
    function drawStates(stateDataGJson, waterGJson, runoffGJson, orvOneGJson, orvTwoGJson, orvThreeGJson, orvFourGJson, orvGJson) {
@@ -118,7 +118,7 @@
 
       console.log(boundaries);
 
-      
+
       // select the html element that will hold our map
       const mapContainer = d3.select('#map')
 
@@ -152,7 +152,9 @@
          .attr('d', path)
          .style('fill') // d => {return colorScales.all(d.properties.emissions.all)}
 
-      drawRunoff(boundaries, runoffGJson, orvGJson);
+      drawORV(boundaries, orvGJson);
+
+      // drawRunoff(boundaries, runoffGJson, orvGJson);
    } // end drawStates
 
    function classBreaks() {
@@ -187,7 +189,7 @@
       const path = d3.geoPath()
          .projection(projection);
 
-         const runoff = svg.append('g')
+      const runoff = svg.append('g')
          .selectAll('path')
          .data(runoffGJson.features)
          .join('path')
@@ -196,7 +198,43 @@
 
    } // end drawRunoff
 
-   function addUI (boundaries) {
+   function drawORV(boundaries, orvGJson) {
+      console.log(boundaries);
+
+      // select the html element that will hold our map
+      const mapContainer = d3.select('#map')
+
+      // console.log(mapContainer);
+
+      // determine width and height of map from container
+      const width = mapContainer.node().offsetWidth;
+      const height = mapContainer.node().offsetHeight;
+
+      const svg = mapContainer
+         .append('svg')
+         .attr('width', width)
+         .attr('height', height)
+         .classed('position-absolute', true) // add bootstrap class
+         .style('top', '0px')
+         .style('left', '0px')
+         .style('bottom', '0px');
+
+      // use geojson layer to fit extent of the projection
+      const projection = d3.geoAlbersUsa()
+         .fitSize([width, height], orvGJson);
+
+      const path = d3.geoPath()
+         .projection(projection);
+
+      const ORVbounds = svg.append('g')
+         .selectAll('path')
+         .data(boundaries[1].features)
+         .join('path')
+         .attr('d', path)
+         .style('fill', 'white') // d => {return colorScales.all(d.properties.emissions.all)}
+   } // end drawORV
+
+   function addUI(boundaries) {
       console.log(boundaries);
    } // end addUI
 
