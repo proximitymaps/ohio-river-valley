@@ -28,8 +28,8 @@
    Promise.all([stateJson, water, usRunoff, orvOne, orvTwo, orvThree, orvFour, orv]).then(drawMap);
 
    const tooltip = d3.select('body').append('div')
-        .attr('class', 'my-tooltip bg-info text-white py-0 px-1 rounded position-absolute')
-        .style('opacity', 0);
+      .attr('class', 'my-tooltip bg-info text-white py-0 px-1 rounded position-absolute')
+      .style('opacity', 0);
 
    // accepts the data as a parameter countiesData
    function drawMap(data) {
@@ -155,8 +155,7 @@
          .join('path')
          .attr('d', path)
          .style('fill') // d => {return colorScales.all(d.properties.emissions.all)}
-         .style('border', '5px solid white')
-
+         
       drawORV(boundaries, orvGJson);
 
       // drawRunoff(boundaries, runoffGJson, orvGJson);
@@ -242,16 +241,16 @@
             const tooltipContent = `${d.properties.name}<br>(States: ${d.properties.states})` // make tooltip visible and update info 
 
             tooltip.style('opacity', 1)
-                .style('left', (event.pageX + 10) + 'px')
-                .style('top', (event.pageY - 30) + 'px')
-                .html(tooltipContent)
-    
-          })
-          .on('mouseout', (event, d) => { // when mousing out of an element
+               .style('left', (event.pageX + 10) + 'px')
+               .style('top', (event.pageY - 30) + 'px')
+               .html(tooltipContent)
+
+         })
+         .on('mouseout', (event, d) => { // when mousing out of an element
             // d3.select(event.currentTarget).classed('hover', false) // remove the class from the polygon
             // tooltip.classed('invisible', true) // hide the element 
             tooltip.style('opacity', 0)
-          });
+         });
    } // end drawORV
 
    function addUI(boundaries) {
