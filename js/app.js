@@ -137,9 +137,9 @@
          .attr('width', width)
          .attr('height', height)
          .classed('position-absolute', true) // add bootstrap class
-         .style('top', '0px')
-         .style('left', '0px')
-         .style('bottom', '0px');
+         .style('top', '40px')
+         .style('left', '30px')
+         // .style('bottom', '30px');
 
       // use geojson layer to fit extent of the projection
       const projection = d3.geoAlbersUsa()
@@ -155,7 +155,7 @@
          .join('path')
          .attr('d', path)
          .style('fill') // d => {return colorScales.all(d.properties.emissions.all)}
-         
+
       drawORV(boundaries, orvGJson);
 
       // drawRunoff(boundaries, runoffGJson, orvGJson);
@@ -182,9 +182,9 @@
          .attr('width', width)
          .attr('height', height)
          .classed('position-absolute', true) // add bootstrap class
-         .style('top', '0px')
-         .style('left', '0px')
-         .style('bottom', '0px');
+         .style('top', '40px')
+         .style('left', '30px')
+         // .style('bottom', '30px');
 
       // use geojson layer to fit extent of the projection
       const projection = d3.geoAlbersUsa()
@@ -219,9 +219,9 @@
          .attr('width', width)
          .attr('height', height)
          .classed('position-absolute', true) // add bootstrap class
-         .style('top', '0px')
-         .style('left', '0px')
-         .style('bottom', '0px');
+         .style('top', '40px')
+         .style('left', '30px')
+         // .style('bottom', '30px');
 
       // use geojson layer to fit extent of the projection
       const projection = d3.geoAlbersUsa()
@@ -251,6 +251,23 @@
             // tooltip.classed('invisible', true) // hide the element 
             tooltip.style('opacity', 0)
          });
+
+      const UIelement = d3.select('#ui svg')
+
+      d3.select('#ui .dropdown-menu').selectAll('a')
+         .data(boundaries[0]) // use array as data
+         .join('a') // append a new option element for each data item
+         .text(d => {
+            return d // use the item as text
+            // console.log(d);
+         })
+         .attr('value', d => {
+            return d // use the time as value attribute
+         })
+         .attr('href', '#')
+         .classed('dropdown-item', true)
+
+      console.log(UIelement);
    } // end drawORV
 
    function addUI(boundaries) {
