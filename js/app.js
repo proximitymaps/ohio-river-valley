@@ -139,7 +139,7 @@
          .classed('position-absolute', true) // add bootstrap class
          .style('top', '40px')
          .style('left', '30px')
-         // .style('bottom', '30px');
+      // .style('bottom', '30px');
 
       // use geojson layer to fit extent of the projection
       const projection = d3.geoAlbersUsa()
@@ -184,7 +184,7 @@
          .classed('position-absolute', true) // add bootstrap class
          .style('top', '40px')
          .style('left', '30px')
-         // .style('bottom', '30px');
+      // .style('bottom', '30px');
 
       // use geojson layer to fit extent of the projection
       const projection = d3.geoAlbersUsa()
@@ -221,7 +221,7 @@
          .classed('position-absolute', true) // add bootstrap class
          .style('top', '40px')
          .style('left', '30px')
-         // .style('bottom', '30px');
+      // .style('bottom', '30px');
 
       // use geojson layer to fit extent of the projection
       const projection = d3.geoAlbersUsa()
@@ -267,9 +267,29 @@
          })
          .attr('href', '#')
          .classed('dropdown-item', true)
+         .on('click', onchange)
+
+      function onchange() {
+         // get the currently selected value
+         let val = d3.select(this).attr('value');
+
+         // change the display property for each circle
+         boundaries.style('display', d => {
+            if (val === boundaries[0]) return 'inline';
+            if (boundaries != val) return 'none';
+         });
+         // update the UI with current val
+         d3.select('#ui > a').html(val);
+      }
 
       console.log(UIelement);
    } // end drawORV
+
+   function filterByAttribute() {
+      var uniqueTypes = [];
+
+      boundaries.forEach()
+   } // end filterByAttribute
 
    function addUI(boundaries) {
       console.log(boundaries);
