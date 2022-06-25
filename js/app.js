@@ -235,6 +235,7 @@
          .data(boundaries[1].features)
          .join('path')
          .attr('d', path)
+         .attr('class', 'region')
          .style('fill', 'white') // d => {return colorScales.all(d.properties.emissions.all)}
          .on('mouseover', (event, d) => { // when mousing over an element
             // d3.select(event.currentTarget).classed('hover', true).raise(); // select it, add a class name, and bring to front

@@ -80,3 +80,9 @@ body {
   /* define styles */
   stroke-width: 2;
 }
+
+.region:hover {
+  fill: #f3e79b;
+  stroke: #eb7f86;
+  stroke-width: 2;
+}
